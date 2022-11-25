@@ -11,9 +11,9 @@ class ColumbiaStudentResource:
     @staticmethod
     def _get_connection():
 
-        usr = "admin"
-        pw = "dbuserdbuser"
-        h = "e61561.cozl0ywa0hxk.us-east-1.rds.amazonaws.com"
+        usr = os.environ.get("DBUSER")
+        pw = os.environ.get("DBPW")
+        h = os.environ.get("DBHOST")
 
         conn = pymysql.connect(
             user=usr,
@@ -23,7 +23,7 @@ class ColumbiaStudentResource:
             autocommit=True
         )
         return conn
-
+    
     @staticmethod
     def get_by_key(key):
 
